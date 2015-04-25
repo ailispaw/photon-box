@@ -1,0 +1,60 @@
+{
+  "builders": [
+    {
+      "name": "photon-mini",
+      "vm_name": "photon-mini-packer",
+      "type": "virtualbox-iso",
+      "disk_size": 40960,
+      "guest_os_type": "Linux26_64",
+      "iso_url": "photon.iso",
+      "iso_checksum_type": "none",
+      "ssh_username": "root",
+      "ssh_password": "VMware123!",
+      "ssh_wait_timeout": "60m",
+      "shutdown_command": "shutdown -h now",
+      "http_directory": ".",
+      "boot_command": [
+        "<enter>",
+        "<wait5><enter>",
+        "<wait5><enter><enter>",
+        "<wait5><down><enter><wait>",
+        "photon<enter><wait>",
+        "VMware123!<enter><wait>",
+        "<enter>",
+        "<wait10><wait10><wait10>",
+        "root<enter><wait>VMware123!<enter><wait>",
+        "sed -i -e 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config<enter>",
+        "<wait5>",
+        "systemctl restart sshd.service<enter>"
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "file",
+      "source": "scripts/docker.service",
+      "destination": "/lib/systemd/system/docker.service"
+    },
+    {
+      "type": "file",
+      "source": "scripts/systemd-machine-id-setup.service",
+      "destination": "/lib/systemd/system/systemd-machine-id-setup.service"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/install_packages.sh"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/provisioning.sh"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "vagrantfile_template": "vagrantfile.tpl",
+      "output": "photon-mini.box"
+    }
+  ]
+
+}

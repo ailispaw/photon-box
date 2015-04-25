@@ -1,0 +1,5 @@
+packer_cache/
+.vagrant/
+
+*.iso
+*.box
