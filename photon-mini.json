@@ -46,7 +46,20 @@
     },
     {
       "type": "shell",
+      "script": "scripts/install_vboxguest.sh"
+    },
+    {
+      "type": "file",
+      "source": "scripts/vboxguest.service",
+      "destination": "/etc/systemd/system/vboxguest.service"
+    },
+    {
+      "type": "shell",
       "script": "scripts/provisioning.sh"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/zerodisk.sh"
     }
   ],
   "post-processors": [

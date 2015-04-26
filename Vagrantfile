@@ -10,7 +10,8 @@ Vagrant.configure(2) do |config|
 #  config.vm.network :public_network, bridge: "en0: Wi-Fi (AirPort)"
 #  config.vm.network :public_network, bridge: "en0: Wi-Fi (AirPort)", ip: "192.168.1.201"
 
-  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["nolock", "vers=3", "udp"]
+  config.vm.synced_folder ".", "/vagrant"
+#  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["nolock", "vers=3", "udp"]
 
   config.vm.provision :docker do |d|
     d.pull_images "busybox"

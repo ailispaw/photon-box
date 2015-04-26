@@ -21,6 +21,9 @@ systemctl enable docker
 
 ln -s /bin/docker /usr/bin/docker
 
+# Enable VBoxGuest to start at runtime
+systemctl enable vboxguest
+
 # Generate /etc/machine-id on the next boot
 systemctl enable systemd-machine-id-setup
 rm -f /etc/machine-id

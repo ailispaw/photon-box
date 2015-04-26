@@ -1,0 +1,11 @@
+[Unit]
+Description=Modprobe VBoxGuest
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStartPre=/sbin/modprobe vboxguest
+ExecStart=/sbin/modprobe vboxsf
+
+[Install]
+WantedBy=multi-user.target
