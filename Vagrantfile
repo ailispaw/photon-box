@@ -5,6 +5,10 @@ Vagrant.configure(2) do |config|
 
   config.vm.hostname = "photon-test.example.com"
 
+  config.vm.network "private_network", ip: "192.168.33.10"
+
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["nolock", "vers=3", "udp"]
+
   config.vm.provision :docker do |d|
     d.pull_images "busybox"
     d.run "simple-echo",

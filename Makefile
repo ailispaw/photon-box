@@ -1,4 +1,4 @@
-photon-mini.box: photon-mini.json photon.iso \
+photon-mini.box: photon-mini.json photon.iso vagrant_plugin_guest_photon.rb \
 	scripts/docker.service scripts/install_packages.sh scripts/provisioning.sh \
 	scripts/systemd-machine-id-setup.service
 	packer build photon-mini.json

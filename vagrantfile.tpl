@@ -1,3 +1,5 @@
+require_relative "vagrant_plugin_guest_photon.rb"
+
 Vagrant.configure('2') do |config|
   # Forward the Docker port
   config.vm.network :forwarded_port, guest: 2375, host: 2375, auto_correct: true
