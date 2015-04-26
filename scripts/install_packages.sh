@@ -2,7 +2,7 @@
 set -e
 
 mount /dev/cdrom /media/cdrom
-tdnf install -y sudo vim
+tdnf install -y sudo
 
 # Install packages to build a package from source
 tdnf install -y tar
