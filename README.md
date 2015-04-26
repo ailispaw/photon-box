@@ -19,7 +19,7 @@ $ make
 ## Vagrant Up
 
 ```
-$ vagrant plugin install vagrant-guests-photon
+$ vagrant plugin install vagrant-guests-photon --plugin-version 1.0.0
 $ vagrant box add -f photon-mini photon-mini.box
 $ vagrant init -m photon-mini
 $ vagrant up
