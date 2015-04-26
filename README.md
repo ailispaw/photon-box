@@ -1,12 +1,13 @@
 # Photon Vagrant Box for VirtualBox
 
 - Photon Container OS (Minimal) Installation
-- Install sudo
+- Install sudo and vim
 - Add docker group and add vagrant to the docker group
 - Generate unique /etc/machine-id on the first boot
 - Support Docker provisioner
 - Support NFS synced folder
-- 241MB
+- Support VirtualBox Shared Folder
+- 216MB
 
 ## How to Build a Box
 
@@ -37,7 +38,9 @@ Vagrant.configure(2) do |config|
 
   config.vm.network "private_network", ip: "192.168.33.10"
 
-  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["nolock", "vers=3", "udp"]
+  config.vm.synced_folder ".", "/vagrant"
+# Or
+# config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["nolock", "vers=3", "udp"]
 
   config.vm.provision :docker do |d|
     d.pull_images "busybox"
