@@ -33,12 +33,12 @@
     {
       "type": "file",
       "source": "scripts/docker.service",
-      "destination": "/lib/systemd/system/docker.service"
+      "destination": "/etc/systemd/system/docker.service"
     },
     {
       "type": "file",
       "source": "scripts/systemd-machine-id-setup.service",
-      "destination": "/lib/systemd/system/systemd-machine-id-setup.service"
+      "destination": "/etc/systemd/system/systemd-machine-id-setup.service"
     },
     {
       "type": "shell",
