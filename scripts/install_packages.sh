@@ -4,6 +4,8 @@ set -e
 mount /dev/cdrom /media/cdrom
 tdnf install -y sudo
 
+tdnf erase -y open-vm-tools
+
 # Install packages to build a package from source
 tdnf install -y tar
 tdnf install -y gcc
