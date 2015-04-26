@@ -5,9 +5,11 @@
       "vm_name": "photon-mini-packer",
       "type": "virtualbox-iso",
       "disk_size": 40960,
+      "hard_drive_interface": "sata",
       "guest_os_type": "Linux26_64",
       "iso_url": "photon.iso",
       "iso_checksum_type": "none",
+      "iso_interface": "sata",
       "ssh_username": "root",
       "ssh_password": "VMware123!",
       "ssh_wait_timeout": "60m",
@@ -26,6 +28,18 @@
         "sed -i -e 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config<enter>",
         "<wait5>",
         "systemctl restart sshd.service<enter>"
+      ],
+      "vboxmanage": [
+        ["modifyvm", "{{.Name}}", "--memory", "1024", "--rtcuseutc", "on", "--pae", "off"],
+        ["modifyvm", "{{.Name}}", "--nictype1", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype2", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype3", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype4", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype5", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype6", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype7", "virtio"],
+        ["modifyvm", "{{.Name}}", "--nictype8", "virtio"],
+        ["storagectl", "{{.Name}}", "--name", "SATA Controller", "--portcount", "2"]
       ]
     }
   ],
