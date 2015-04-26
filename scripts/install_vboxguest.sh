@@ -27,8 +27,11 @@ cp amd64/src/vboxguest-4.3.26/*.ko /lib/modules/3.19.2/
 cp amd64/lib/VBoxGuestAdditions/mount.vboxsf /sbin
 depmod -a
 
+umount /media/GuestAdditionsISO
+
 rm -f /usr/src/linux-3.19.2.tar.xz
 rm -rf /usr/src/linux-3.19.2
 rm -rf /usr/src/include
 rm -rf /vboxguest
 rm -f /root/VBoxGuestAdditions.iso
+rm -rf /media/GuestAdditionsISO
