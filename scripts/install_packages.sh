@@ -12,6 +12,8 @@ tdnf install -y make
 tdnf install -y glibc-devel
 tdnf install -y linux-api-headers
 
+umount /media/cdrom
+
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html
 cd /tmp
 curl -OL http://downloads.sourceforge.net/project/libtirpc/libtirpc/0.2.5/libtirpc-0.2.5.tar.bz2
@@ -29,6 +31,9 @@ mv -v /usr/lib/libtirpc.so.* /lib
 cd /usr/lib
 ln -sfv ../../lib/libtirpc.so.1.0.10 /usr/lib/libtirpc.so
 
+rm -f /tmp/libtirpc-0.2.5.tar
+rm -rf /tmp/libtirpc-0.2.5
+
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/rpcbind.html
 cd /tmp
 curl -OL http://downloads.sourceforge.net/rpcbind/rpcbind-0.2.2.tar.bz2
@@ -45,6 +50,9 @@ sed -i "/error = getaddrinfo/s:rpcbind:sunrpc:" src/rpcinfo.c
 make
 make install
 
+rm -f /tmp/rpcbind-0.2.2.tar
+rm -rf /tmp/rpcbind-0.2.2
+
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/nfs-utils.html
 cd /tmp
 curl -OL http://downloads.sourceforge.net/nfs/nfs-utils-1.3.2.tar.bz2
@@ -60,3 +68,6 @@ sed -i "/daemon_init/s:\!::" utils/statd/statd.c
             --disable-gss &&
 make
 make install
+
+rm -f /tmp/nfs-utils-1.3.2.tar
+rm -rf /tmp/nfs-utils-1.3.2
