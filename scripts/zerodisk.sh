@@ -6,6 +6,11 @@ rpm --rebuilddb
 
 rm -rf /run/log/journal/*
 
+> /var/log/lastlog
+> /var/log/wtmp
+> /var/log/btmp
+rm /var/log/mk-install-package.sh*
+
 dd if=/dev/zero of=/EMPTY bs=1M
 rm -f /EMPTY
 
