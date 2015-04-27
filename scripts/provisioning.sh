@@ -16,6 +16,19 @@ chown -R vagrant:users ${HOME_DIR}/.ssh
 chmod 700 ${HOME_DIR}/.ssh
 chmod 600 ${HOME_DIR}/.ssh/authorized_keys
 
+# Disable Root Login
+sed -i "s/^PermitRootLogin yes/PermitRootLogin no/" /etc/ssh/sshd_config
+
+# Disable SSH Password Authentication
+if ! grep -q "^PasswordAuthentication no" /etc/ssh/sshd_config; then
+  echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+fi
+
+# Disable SSH Use DNS
+if ! grep -q "^UseDNS no" /etc/ssh/sshd_config; then
+  echo "UseDNS no" >> /etc/ssh/sshd_config
+fi
+
 # Enable Docker to start at runtime
 systemctl enable docker
 
