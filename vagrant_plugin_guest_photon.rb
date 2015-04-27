@@ -43,8 +43,22 @@ module VagrantPlugins
           machine.communicate.tap do |comm|
             comm.sudo("rm -f /etc/systemd/network/50-vagrant-*.network")
 
+            # Read network interface names
+            interfaces = []
+            comm.sudo("ifconfig -a | grep 'eth' | cut -f1 -d' '") do |_, result|
+              interfaces = result.split("\n")
+            end
+
+            # Configure interfaces
             networks.each do |network|
-              iface = "eth#{network[:interface]}"
+              interface = network[:interface].to_i
+
+              iface = interfaces[interface]
+              if iface.nil?
+                @@logger.warn("Could not find match rule for network #{network.inspect}")
+                next
+              end
+
               unit_name = "50-vagrant-%s.network" % [iface]
 
               if network[:type] == :static
