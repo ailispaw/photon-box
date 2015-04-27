@@ -14,6 +14,7 @@ tdnf install -y make
 tdnf install -y glibc-devel
 tdnf install -y linux-api-headers
 
+tdnf clean all
 umount /media/cdrom
 
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html
