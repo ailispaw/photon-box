@@ -4,15 +4,15 @@ set -e
 mount /dev/cdrom /media/cdrom
 tdnf install -y sudo
 
-tdnf erase -y open-vm-tools
+# Remove open-vm-tools and its dependencies
+for p in open-vm-tools xml-security-c xerces-c libmspack libdnet; do
+  tdnf erase -y $p
+done
 
 # Install packages to build a package from source
-tdnf install -y tar
-tdnf install -y gcc
-tdnf install -y gawk
-tdnf install -y make
-tdnf install -y glibc-devel
-tdnf install -y linux-api-headers
+for p in tar gcc gawk make glibc-devel linux-api-headers; do
+  tdnf install -y $p
+done
 
 tdnf clean all
 umount /media/cdrom
