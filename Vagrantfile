@@ -5,6 +5,10 @@ Vagrant.configure(2) do |config|
 
   config.vm.hostname = "photon-test.example.com"
 
+  config.vm.provider :virtualbox do |vb|
+    vb.gui = true
+  end
+
   config.vm.network :private_network, ip: "192.168.33.10"
 #  config.vm.network :private_network, type: "dhcp"
 #  config.vm.network :public_network, bridge: "en0: Wi-Fi (AirPort)"
