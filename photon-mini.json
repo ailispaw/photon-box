@@ -73,7 +73,7 @@
     },
     {
       "type": "shell",
-      "script": "scripts/zerodisk.sh"
+      "script": "scripts/cleanup.sh"
     }
   ],
   "post-processors": [

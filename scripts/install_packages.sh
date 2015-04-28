@@ -4,22 +4,11 @@ set -e
 mount /dev/cdrom /media/cdrom
 tdnf install -y sudo
 
-# Remove open-vm-tools and its dependencies
-for p in open-vm-tools xml-security-c xerces-c libmspack libdnet; do
-  tdnf erase -y $p
-done
-
-# Remove unnecessary packages
-for p in nano gzip cpio libxml2 gdbm; do
-  tdnf erase -y $p
-done
-
 # Install packages to build a package from source
 for p in tar gcc gawk make glibc-devel linux-api-headers; do
   tdnf install -y $p
 done
 
-tdnf clean all
 umount /media/cdrom
 
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html
