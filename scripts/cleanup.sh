@@ -6,12 +6,12 @@ for p in open-vm-tools xml-security-c xerces-c libmspack libdnet; do
 done
 
 # Remove unnecessary packages
-for p in nano gzip cpio libxml2 gdbm; do
+for p in cpio libxml2; do
   tdnf erase -y $p
 done
 
 # Remove packages to build a package from source
-for p in tar gcc gawk make glibc-devel linux-api-headers; do
+for p in gcc make glibc-devel linux-api-headers; do
   tdnf erase -y $p
 done
 
