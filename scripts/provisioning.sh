@@ -30,6 +30,8 @@ if ! grep -q "^UseDNS no" /etc/ssh/sshd_config; then
 fi
 
 # Enable Docker to start at runtime
+systemctl enable docker.socket
+systemctl enable docker-tcp.socket
 systemctl enable docker
 
 ln -s /bin/docker /usr/bin/docker

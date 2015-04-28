@@ -46,6 +46,16 @@
   "provisioners": [
     {
       "type": "file",
+      "source": "scripts/docker.socket",
+      "destination": "/etc/systemd/system/docker.socket"
+    },
+    {
+      "type": "file",
+      "source": "scripts/docker-tcp.socket",
+      "destination": "/etc/systemd/system/docker-tcp.socket"
+    },
+    {
+      "type": "file",
       "source": "scripts/docker.service",
       "destination": "/etc/systemd/system/docker.service"
     },

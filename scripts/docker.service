@@ -1,8 +1,10 @@
 [Unit]
 Description=Docker Daemon
+After=network.target docker.socket
+Requires=docker.socket
 
 [Service]
-ExecStart=/bin/docker -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock -d
+ExecStart=/bin/docker -d -D -s overlay -H fd://
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always
