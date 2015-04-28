@@ -68,3 +68,9 @@ make install
 
 rm -f /tmp/nfs-utils-1.3.2.tar
 rm -rf /tmp/nfs-utils-1.3.2
+
+# https://github.com/vmware/photon/issues/24
+cd /tmp
+curl -OL https://github.com/higebu/photon/releases/download/systemd-216-2/systemd-216-2.x86_64.rpm
+rpm -Uvh systemd-216-2.x86_64.rpm
+rm -f systemd-216-2.x86_64.rpm
