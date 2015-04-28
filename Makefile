@@ -1,8 +1,8 @@
 photon-mini.box: photon-mini.json photon.iso vagrant_plugin_guest_photon.rb \
 	scripts/install_packages.sh scripts/install_vboxguest.sh \
 	scripts/provisioning.sh scripts/cleanup.sh \
-	scripts/systemd-machine-id-setup.service scripts/vboxguest.service \
-	scripts/docker.service scripts/docker-tcp.socket scripts/docker-tcp.socket
+	units/systemd-machine-id-setup.service units/vboxguest.service \
+	units/docker.service units/docker-tcp.socket units/docker-tcp.socket
 	packer build photon-mini.json
 
 photon.iso:

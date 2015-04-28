@@ -18,15 +18,16 @@
       "boot_command": [
         "<enter>",
         "<wait5><enter>",
-        "<wait5><enter><enter>",
-        "<wait5><down><enter><wait>",
+        "<wait5><enter><wait><enter>",
+        "<wait5><down><wait><enter><wait>",
         "photon<enter><wait>",
         "VMware123!<enter><wait>",
         "<enter>",
         "<wait10><wait10><wait10>",
-        "root<enter><wait>VMware123!<enter><wait>",
+        "root<enter><wait>",
+        "VMware123!<enter><wait>",
         "sed -i -e 's/PermitRootLogin no/PermitRootLogin yes/g' /etc/ssh/sshd_config<enter>",
-        "<wait5>",
+        "<wait>",
         "systemctl restart sshd.service<enter>"
       ],
       "vboxmanage": [
@@ -46,44 +47,17 @@
   "provisioners": [
     {
       "type": "file",
-      "source": "scripts/docker.socket",
-      "destination": "/etc/systemd/system/docker.socket"
-    },
-    {
-      "type": "file",
-      "source": "scripts/docker-tcp.socket",
-      "destination": "/etc/systemd/system/docker-tcp.socket"
-    },
-    {
-      "type": "file",
-      "source": "scripts/docker.service",
-      "destination": "/etc/systemd/system/docker.service"
-    },
-    {
-      "type": "file",
-      "source": "scripts/systemd-machine-id-setup.service",
-      "destination": "/etc/systemd/system/systemd-machine-id-setup.service"
+      "source": "units/",
+      "destination": "/etc/systemd/system"
     },
     {
       "type": "shell",
-      "script": "scripts/install_packages.sh"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/install_vboxguest.sh"
-    },
-    {
-      "type": "file",
-      "source": "scripts/vboxguest.service",
-      "destination": "/etc/systemd/system/vboxguest.service"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/provisioning.sh"
-    },
-    {
-      "type": "shell",
-      "script": "scripts/cleanup.sh"
+      "scripts": [
+        "scripts/install_packages.sh",
+        "scripts/install_vboxguest.sh",
+        "scripts/provisioning.sh",
+        "scripts/cleanup.sh"
+      ]
     }
   ],
   "post-processors": [
