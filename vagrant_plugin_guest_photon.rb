@@ -8,6 +8,7 @@ end
 
 require 'tempfile'
 require 'ipaddr'
+require 'log4r'
 
 # Borrowed from http://stackoverflow.com/questions/1825928/netmask-to-cidr-in-ruby
 IPAddr.class_eval do
@@ -37,7 +38,7 @@ module VagrantPlugins
   module GuestPhoton
     module Cap
       class ConfigureNetworks
-        include Vagrant::Util
+        @@logger = Log4r::Logger.new("vagrant::guest::photon::configure_networks")
 
         def self.configure_networks(machine, networks)
           machine.communicate.tap do |comm|
