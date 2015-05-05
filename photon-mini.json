@@ -63,9 +63,6 @@
   "post-processors": [
     {
       "type": "vagrant",
-      "include": [
-        "vagrant_plugin_guest_photon.rb"
-      ],
       "vagrantfile_template": "vagrantfile.tpl",
       "output": "photon-mini.box"
     }

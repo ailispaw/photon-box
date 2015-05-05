@@ -1,4 +1,4 @@
-photon-mini.box: photon-mini.json photon.iso vagrant_plugin_guest_photon.rb \
+photon-mini.box: photon-mini.json vagrantfile.tpl photon.iso \
 	scripts/install_packages.sh scripts/install_vboxguest.sh \
 	scripts/provisioning.sh scripts/cleanup.sh \
 	units/systemd-machine-id-setup.service units/vboxguest.service \

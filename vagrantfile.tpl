@@ -1,4 +1,10 @@
-require_relative "vagrant_plugin_guest_photon.rb"
+unless Vagrant.has_plugin?("vagrant-guests-photon")
+  puts "--- WARNING ---"
+  puts "You need vagrant-guests-photon plugin to use this box."
+  puts "  $ vagrant plugin install vagrant-guests-photon"
+  puts "Cf.) https://github.com/vmware/vagrant-guests-photon"
+  exit
+end
 
 Vagrant.configure('2') do |config|
   # Forward the Docker port
