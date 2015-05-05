@@ -6,7 +6,7 @@ for p in open-vm-tools xml-security-c xerces-c libmspack libdnet; do
 done
 
 # Remove unnecessary packages
-for p in cpio libxml2; do
+for p in cpio libxml2 docker; do
   tdnf erase -y $p
 done
 

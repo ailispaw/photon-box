@@ -4,7 +4,7 @@ After=network.target docker.socket
 Requires=docker.socket
 
 [Service]
-ExecStart=/bin/docker -d -D -s overlay -H fd://
+ExecStart=/usr/bin/docker -d -D -s overlay -H fd://
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 Restart=always

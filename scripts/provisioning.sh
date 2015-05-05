@@ -34,8 +34,6 @@ systemctl enable docker.socket
 systemctl enable docker-tcp.socket
 systemctl enable docker
 
-ln -s /bin/docker /usr/bin/docker
-
 # Enable VBoxGuest to start at runtime
 systemctl enable vboxguest
 
