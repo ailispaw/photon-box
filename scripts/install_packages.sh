@@ -12,8 +12,9 @@ done
 umount /media/cdrom
 
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html
+# http://sourceforge.net/projects/libtirpc/files/libtirpc/
 cd /tmp
-curl -OL http://downloads.sourceforge.net/project/libtirpc/libtirpc/0.2.5/libtirpc-0.2.5.tar.bz2
+curl -OL http://downloads.sourceforge.net/libtirpc/libtirpc-0.2.5.tar.bz2
 bzip2 -d libtirpc-0.2.5.tar.bz2
 tar xf libtirpc-0.2.5.tar
 cd libtirpc-0.2.5
@@ -32,6 +33,7 @@ rm -f /tmp/libtirpc-0.2.5.tar
 rm -rf /tmp/libtirpc-0.2.5
 
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/rpcbind.html
+# http://sourceforge.net/projects/rpcbind/files/rpcbind/
 cd /tmp
 curl -OL http://downloads.sourceforge.net/rpcbind/rpcbind-0.2.2.tar.bz2
 bzip2 -d rpcbind-0.2.2.tar.bz2
@@ -51,6 +53,7 @@ rm -f /tmp/rpcbind-0.2.2.tar
 rm -rf /tmp/rpcbind-0.2.2
 
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/nfs-utils.html
+# http://sourceforge.net/projects/nfs/files/nfs-utils/
 cd /tmp
 curl -OL http://downloads.sourceforge.net/nfs/nfs-utils-1.3.2.tar.bz2
 bzip2 -d nfs-utils-1.3.2.tar.bz2
