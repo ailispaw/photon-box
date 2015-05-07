@@ -8,7 +8,7 @@
 - Support Docker provisioner
 - Support NFS synced folder
 - Support VirtualBox Shared Folder
-- 114MB
+- 117MB
 
 ## How to Build a Box
 
