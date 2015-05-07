@@ -80,6 +80,6 @@ rm -f systemd-216-2.x86_64.rpm
 
 # Install the latest version of Docker
 cd /tmp
-curl -OL https://get.docker.com/builds/Linux/x86_64/docker-1.6.0.tgz
-tar xzf docker-1.6.0.tgz -C /usr/bin --strip-components=3
-rm -f docker-1.6.0.tgz
+curl -OL https://get.docker.com/builds/Linux/x86_64/docker-1.6.1.tgz
+tar xzf docker-1.6.1.tgz -C /usr/bin --strip-components=3
+rm -f docker-1.6.1.tgz

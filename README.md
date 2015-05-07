@@ -1,7 +1,7 @@
 # Photon Vagrant Box for VirtualBox
 
 - Photon Container OS (Minimal) Installation
-- Docker v1.6.0
+- Docker v1.6.1
 - Install sudo
 - Add docker group and add vagrant to the docker group
 - Generate unique /etc/machine-id on the first boot
