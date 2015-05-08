@@ -1,8 +1,9 @@
 unless Vagrant.has_plugin?("vagrant-guests-photon")
-  puts "--- WARNING ---"
-  puts "You need vagrant-guests-photon plugin to use this box."
-  puts "  $ vagrant plugin install vagrant-guests-photon"
-  puts "Cf.) https://github.com/vmware/vagrant-guests-photon"
+  @ui = Vagrant::UI::Colored.new
+  @ui.error "--- WARNING ---"
+  @ui.error "You need vagrant-guests-photon plugin to use this box."
+  @ui.error "  $ vagrant plugin install vagrant-guests-photon"
+  @ui.error "Cf.) https://github.com/vmware/vagrant-guests-photon"
   exit
 end
 
