@@ -47,8 +47,7 @@ curl -OL http://downloads.sourceforge.net/rpcbind/rpcbind-${VERSION}.tar.bz2
 bzip2 -d rpcbind-${VERSION}.tar.bz2
 tar xf rpcbind-${VERSION}.tar
 cd rpcbind-${VERSION}
-sed -i "/servname/s:rpcbind:sunrpc:" src/rpcbind.c &&
-sed -i "/error = getaddrinfo/s:rpcbind:sunrpc:" src/rpcinfo.c
+sed -i "/servname/s:rpcbind:sunrpc:" src/rpcbind.c
 
 ./configure --prefix=/usr       \
             --bindir=/sbin      \
