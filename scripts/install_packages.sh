@@ -13,11 +13,18 @@ umount /media/cdrom
 
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html
 # http://sourceforge.net/projects/libtirpc/files/libtirpc/
+VERSION=0.3.0
 cd /tmp
-curl -OL http://downloads.sourceforge.net/libtirpc/libtirpc-0.2.5.tar.bz2
-bzip2 -d libtirpc-0.2.5.tar.bz2
-tar xf libtirpc-0.2.5.tar
-cd libtirpc-0.2.5
+curl -OL http://downloads.sourceforge.net/libtirpc/libtirpc-${VERSION}.tar.bz2
+bzip2 -d libtirpc-${VERSION}.tar.bz2
+tar xf libtirpc-${VERSION}.tar
+cd libtirpc-${VERSION}
+
+sed -e '/rpcsec_gss.h/         i #ifdef HAVE_RPCSEC_GSS' \
+    -e '/svc_rpc_gss_parms_t;/ a #endif' \
+    -e '/svc_rpc_gss_parms_t / i #ifdef HAVE_RPCSEC_GSS' \
+    -e '/rpc_gss_rawcred_t /   a #endif' \
+    -i tirpc/rpc/svc_auth.h
 
 ./configure --prefix=/usr     \
             --sysconfdir=/etc \
@@ -29,16 +36,17 @@ mv -v /usr/lib/libtirpc.so.* /lib
 cd /usr/lib
 ln -sfv ../../lib/libtirpc.so.1.0.10 /usr/lib/libtirpc.so
 
-rm -f /tmp/libtirpc-0.2.5.tar
-rm -rf /tmp/libtirpc-0.2.5
+rm -f /tmp/libtirpc-${VERSION}.tar
+rm -rf /tmp/libtirpc-${VERSION}
 
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/rpcbind.html
 # http://sourceforge.net/projects/rpcbind/files/rpcbind/
+VERSION=0.2.3
 cd /tmp
-curl -OL http://downloads.sourceforge.net/rpcbind/rpcbind-0.2.3.tar.bz2
-bzip2 -d rpcbind-0.2.3.tar.bz2
-tar xf rpcbind-0.2.3.tar
-cd rpcbind-0.2.3
+curl -OL http://downloads.sourceforge.net/rpcbind/rpcbind-${VERSION}.tar.bz2
+bzip2 -d rpcbind-${VERSION}.tar.bz2
+tar xf rpcbind-${VERSION}.tar
+cd rpcbind-${VERSION}
 sed -i "/servname/s:rpcbind:sunrpc:" src/rpcbind.c &&
 sed -i "/error = getaddrinfo/s:rpcbind:sunrpc:" src/rpcinfo.c
 
@@ -49,16 +57,17 @@ sed -i "/error = getaddrinfo/s:rpcbind:sunrpc:" src/rpcinfo.c
 make
 make install
 
-rm -f /tmp/rpcbind-0.2.2.tar
-rm -rf /tmp/rpcbind-0.2.2
+rm -f /tmp/rpcbind-${VERSION}.tar
+rm -rf /tmp/rpcbind-${VERSION}
 
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/nfs-utils.html
 # http://sourceforge.net/projects/nfs/files/nfs-utils/
+VERSION=1.3.2
 cd /tmp
-curl -OL http://downloads.sourceforge.net/nfs/nfs-utils-1.3.2.tar.bz2
-bzip2 -d nfs-utils-1.3.2.tar.bz2
-tar xf nfs-utils-1.3.2.tar
-cd nfs-utils-1.3.2
+curl -OL http://downloads.sourceforge.net/nfs/nfs-utils-${VERSION}.tar.bz2
+bzip2 -d nfs-utils-${VERSION}.tar.bz2
+tar xf nfs-utils-${VERSION}.tar
+cd nfs-utils-${VERSION}
 sed -i "/daemon_init/s:\!::" utils/statd/statd.c
 
 ./configure --prefix=/usr          \
@@ -69,14 +78,15 @@ sed -i "/daemon_init/s:\!::" utils/statd/statd.c
 make
 make install
 
-rm -f /tmp/nfs-utils-1.3.2.tar
-rm -rf /tmp/nfs-utils-1.3.2
+rm -f /tmp/nfs-utils-${VERSION}.tar
+rm -rf /tmp/nfs-utils-${VERSION}
 
 # https://github.com/vmware/photon/issues/24
+VERSION=216-2
 cd /tmp
-curl -OL https://github.com/higebu/photon/releases/download/systemd-216-2/systemd-216-2.x86_64.rpm
-rpm -Uvh systemd-216-2.x86_64.rpm
-rm -f systemd-216-2.x86_64.rpm
+curl -OL https://github.com/higebu/photon/releases/download/systemd-${VERSION}/systemd-${VERSION}.x86_64.rpm
+rpm -Uvh systemd-${VERSION}.x86_64.rpm
+rm -f systemd-${VERSION}.x86_64.rpm
 
 # Install the latest version of Docker
 DOCKER_VERSION=1.6.2
