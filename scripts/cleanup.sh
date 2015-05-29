@@ -17,7 +17,7 @@ done
 
 tdnf clean all
 
-rm -rf /var/cache/tdnf
+rm -rf /var/cache/tdnf/*
 rm -f /var/lib/rpm/__db.*
 rpm --rebuilddb
 
