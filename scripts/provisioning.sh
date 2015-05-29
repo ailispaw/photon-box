@@ -29,6 +29,9 @@ if ! grep -q "^UseDNS no" /etc/ssh/sshd_config; then
   echo "UseDNS no" >> /etc/ssh/sshd_config
 fi
 
+# Disable photon-iso.repo
+sed -i "s/^enabled=1/enabled=0/" /etc/yum.repos.d/photon-iso.repo
+
 # Enable Docker to start at runtime
 systemctl enable docker.socket
 systemctl enable docker-tcp.socket
