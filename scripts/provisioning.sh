@@ -38,7 +38,11 @@ systemctl enable docker-tcp.socket
 systemctl enable docker
 
 # Enable VBoxGuest to start at runtime
-systemctl enable vboxguest
+mkdir -p /etc/modules-load.d
+cat > /etc/modules-load.d/vboxguest.conf << EOF
+vboxguest
+vboxsf
+EOF
 
 # Generate /etc/machine-id on the next boot
 systemctl enable systemd-machine-id-setup

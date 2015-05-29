@@ -1,7 +1,7 @@
 photon-mini.box: photon-mini.json vagrantfile.tpl photon.iso \
 	scripts/install_packages.sh scripts/install_vboxguest.sh \
 	scripts/provisioning.sh scripts/cleanup.sh \
-	units/systemd-machine-id-setup.service units/vboxguest.service \
+	units/systemd-machine-id-setup.service \
 	units/docker.service units/docker-tcp.socket units/docker-tcp.socket
 	packer build photon-mini.json
 
