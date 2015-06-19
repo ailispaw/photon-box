@@ -88,7 +88,7 @@ rpm -Uvh systemd-${VERSION}.x86_64.rpm
 rm -f systemd-${VERSION}.x86_64.rpm
 
 # Install the latest version of Docker
-DOCKER_VERSION=1.6.2
+DOCKER_VERSION=1.7.0
 cd /tmp
 curl -OL https://get.docker.com/builds/Linux/x86_64/docker-${DOCKER_VERSION}.tgz
 tar xzf docker-${DOCKER_VERSION}.tgz -C /usr/bin --strip-components=3
