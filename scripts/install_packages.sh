@@ -13,24 +13,19 @@ umount /media/cdrom
 
 # http://www.linuxfromscratch.org/blfs/view/svn/basicnet/libtirpc.html
 # http://sourceforge.net/projects/libtirpc/files/libtirpc/
-VERSION=0.3.0
+VERSION=0.3.1
 cd /tmp
 curl -OL http://downloads.sourceforge.net/libtirpc/libtirpc-${VERSION}.tar.bz2
 bzip2 -d libtirpc-${VERSION}.tar.bz2
 tar xf libtirpc-${VERSION}.tar
 cd libtirpc-${VERSION}
 
-sed -e '/rpcsec_gss.h/         i #ifdef HAVE_RPCSEC_GSS' \
-    -e '/svc_rpc_gss_parms_t;/ a #endif' \
-    -e '/svc_rpc_gss_parms_t / i #ifdef HAVE_RPCSEC_GSS' \
-    -e '/rpc_gss_rawcred_t /   a #endif' \
-    -i tirpc/rpc/svc_auth.h
-
 ./configure --prefix=/usr     \
             --sysconfdir=/etc \
             --disable-static  \
             --disable-gssapi  &&
 make
+
 make install
 mv -v /usr/lib/libtirpc.so.* /lib
 cd /usr/lib
@@ -47,6 +42,7 @@ curl -OL http://downloads.sourceforge.net/rpcbind/rpcbind-${VERSION}.tar.bz2
 bzip2 -d rpcbind-${VERSION}.tar.bz2
 tar xf rpcbind-${VERSION}.tar
 cd rpcbind-${VERSION}
+
 sed -i "/servname/s:rpcbind:sunrpc:" src/rpcbind.c
 
 ./configure --prefix=/usr       \
@@ -54,6 +50,7 @@ sed -i "/servname/s:rpcbind:sunrpc:" src/rpcbind.c
             --with-rpcuser=root \
             --without-systemdsystemunitdir &&
 make
+
 make install
 
 rm -f /tmp/rpcbind-${VERSION}.tar
@@ -67,6 +64,7 @@ curl -OL http://downloads.sourceforge.net/nfs/nfs-utils-${VERSION}.tar.bz2
 bzip2 -d nfs-utils-${VERSION}.tar.bz2
 tar xf nfs-utils-${VERSION}.tar
 cd nfs-utils-${VERSION}
+
 sed -i "/daemon_init/s:\!::" utils/statd/statd.c
 
 ./configure --prefix=/usr          \
@@ -75,6 +73,7 @@ sed -i "/daemon_init/s:\!::" utils/statd/statd.c
             --disable-nfsv4        \
             --disable-gss &&
 make
+
 make install
 
 rm -f /tmp/nfs-utils-${VERSION}.tar
